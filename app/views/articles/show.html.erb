@@ -1,0 +1,45 @@
+<section class="m-10 p-10 flex flex-col items-center">
+  <h1 class="main-title mb-1"> <%= @article.name %> </h1>
+  <div>
+    <%= @article.description %>
+  </div>
+
+  <div class="flex gap-5 my-2 items-center justify-center">
+    <% @article.categories.each do |category| %>
+      <span class="bg-blue-100 text-blue-800 text-xs font-semibold rounded-lg p-1">
+        <%= category.name %> <br>
+      </span>
+    <% end %>
+  </div>
+
+  <div class="w-96 my-10">
+    <%= image_tag(@article.avatar) if @article.avatar.attached? %>
+  </div>
+
+  <div class="flex flex-col items-center justify-center text-center">
+    <%= @article.body %>
+  </div>
+
+  <% unless current_user.profile.member? %>
+    <% if current_user == @article.user || current_user.profile.superadmin? %>
+      <div class="flex gap-10">
+        <%= link_to 'Edit article', edit_article_path(@article), class: "btn-primary bg-blue-800"%>
+        <%= button_to 'Delete article', article_path(@article), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class: "btn-primary bg-red-800" %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="w-full">
+    <h4 class="font-semibold text-lg mt-10"> Comments </h4>
+    <div class="my-5">
+      <% @article.comments.each do |comment| %>
+        <%= render 'comments/comment', comment: comment%>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="w-full">
+    <h5 class="font-semibold mt-10">Add comments</h5>
+    <%= render 'comments/form', {article: @article, comment: @comment}%>
+  </div>
+</section>

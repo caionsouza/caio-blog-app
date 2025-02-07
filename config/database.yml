@@ -1,0 +1,24 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: postgres
+  password: postgres
+  host: db  # This should match the service name in docker-compose.yml
+  port: 5432
+  database: caio-dev-project_development
+  url: <%= ENV['DATABASE_URL'] %>
+
+development:
+  <<: *default
+  database: caio-dev-project_development
+
+test:
+  <<: *default
+  database: app_test
+
+production:
+  <<: *default
+  database: caio-dev-project_production
+  username: caio-dev-project
+  password: <%= ENV["CAIO_DEV_PROJECT_DATABASE_PASSWORD"] %>

@@ -1,0 +1,39 @@
+<div id="<%= dom_id profile %>" class="big-card">
+  <span class="font-bolt text-3x1">
+    <%= profile.name %>
+  </span>
+
+  <span>
+    <%= profile.city %>
+    <%= profile.country %>
+  </span>
+
+  <span>
+    <strong>Birth:</strong>
+    <%= profile.birth %>
+  </span>
+
+  <span>
+    <strong>Gender:</strong>
+    <%= profile.gender %>
+  </span>
+
+  <span>
+    <strong>Role:</strong>
+    <%= profile.role %>
+  </span>
+  
+  <% if current_user == profile.user %>
+    <div>
+      <%= link_to "Edit profile", edit_profile_path(profile), class: "btn-primary bg-green-800" %> 
+      <%= link_to "Edit account", user_edit_path(profile.user), class: "btn-primary bg-blue-800" %> 
+    </div>
+  <% end %>
+
+  <% if current_user == profile.user || current_user.profile.superadmin? %>
+    <div>
+      <%= button_to 'Cancel account', user_destroy_path(profile.user), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class: "btn-primary bg-red-800" %>
+    </div>
+  <% end %>
+
+</div>

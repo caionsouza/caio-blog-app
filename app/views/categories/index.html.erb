@@ -1,0 +1,8 @@
+<section class="m-10 p-5">
+  <h1 class="main-title">Categories</h1>
+  
+  <% @categories.order(:created_at).each do |category| %>
+    <%= render category %>
+  <% end %>
+
+</section>

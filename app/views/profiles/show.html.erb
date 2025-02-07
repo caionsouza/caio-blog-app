@@ -1,0 +1,16 @@
+<section class="p-10">
+  <%= render @profile %>
+</section>
+
+<section>
+  <% @profile.user.articles.each do |article| %>
+    <div class="m-5 p-5 border-2 border-gray-400 rounded-lg">
+      <span class="font-bold text-lg">
+        <%= article.name %> <br>
+      </span>
+      <span class="font-semibold text-sm">
+        <%= article.description %>
+      </span>
+    </div>
+  <% end %>
+</section>

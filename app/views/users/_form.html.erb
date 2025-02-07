@@ -1,0 +1,40 @@
+<section class="flex flex-col m-20 px-10 border-2 border-gray-200 items-center justify-center rounded-lg">
+  <h1 class="main-title"><%= title %></h1>
+  <div class="mb-10 w-full">
+    <%= form_with(model: @user, class:"flex flex-col w-full") do |form| %>
+      <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+          <ul>
+            <% @user.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div>
+        <%= form.label :email, class: "label-form" %>
+        <%= form.email_field :email, class: "field-form" %>
+      </div>
+
+      <div>
+        <%= form.hidden_field :url, id: "url_field"%>
+      </div>
+
+      <div>
+        <%= form.label :password, class: "label-form"%>
+        <%= form.password_field :password, class: "field-form"%>
+      </div>
+
+      <div>
+        <%= form.label :password_confirmation, class: "label-form"%>
+        <%= form.password_field :password_confirmation, class: "field-form"%>
+      </div>
+
+      <div class="mt-10 flex justify-center items-center">
+        <%= form.submit buttonText , class: "btn-primary bg-green-800" %>
+      </div>
+    <% end %>
+  </div>
+</section>

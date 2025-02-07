@@ -1,0 +1,16 @@
+<div class="my-10 p-10 rounded-lg border-2 border-green-200 flex flex-col">
+  <span class="font-bold text-2xl">
+    <%= user_profile.name %><br>
+  </span>
+  <span class="font-bold text-xs">
+    <%= user_profile.user.email %><br>
+  </span>
+
+  <span class="font-semibold">
+    <%= user_profile.country %>
+  </span>
+
+  <div class="my-3">
+    <%= link_to 'See user', profile_path(user_profile), class:"btn-primary bg-green-800" %>
+  </div>
+</div>

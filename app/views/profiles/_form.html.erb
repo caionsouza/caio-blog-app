@@ -1,0 +1,54 @@
+<section class="flex flex-col m-20 px-10 border-2 border-gray-200 items-center justify-center rounded-lg">  
+  <h1 class="main-title"> <%= title %></h1>
+
+  <div class="mb-10 w-full">
+    <%= form_with(model: profile, class:"flex flex-col w-full") do |form| %>
+      <% if profile.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+    
+          <ul>
+            <% profile.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    
+      <div>
+        <%= form.label :name, class: "label-form" %>
+        <%= form.text_field :name, class: "field-form" %>
+      </div>
+    
+      <div>
+        <%= form.label :city, class: "label-form" %>
+        <%= form.text_field :city, class: "field-form" %>
+      </div>
+    
+      <div>
+        <%= form.label :country, class: "label-form" %>
+        <%= form.text_field :country, class: "field-form" %>
+      </div>
+    
+      <div>
+        <%= form.label :birth, class: "label-form" %>
+        <%= form.date_field :birth, class: "field-form" %>
+      </div>
+    
+      <div class="flex items-center gap-5">
+        <div class="my-auto">
+          <%= form.radio_button :gender, 'Male' %>
+          <%= form.label :gender, 'Male', class: "label-form" %>
+        </div>
+        <div class="my-auto">
+          <%= form.radio_button :gender, 'Female' %>
+          <%= form.label :gender, 'Female', class: "label-form" %>
+        </div>
+      </div>
+    
+      <div class="mt-10 flex justify-center items-center">
+        <%= form.submit class: "btn-primary bg-green-800" %>
+      </div>
+    <% end %>
+  </div>
+</section>

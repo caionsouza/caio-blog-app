@@ -1,0 +1,16 @@
+<div id="<%= dom_id comment %>" class="border-2 border-gray-200 flex p-3 my-2 justify-between items-center rounded-lg">
+  <div class="flex flex-col">
+    <span class="font-semibold text-sm">
+      <%= comment.text %> 
+    </span>
+    <span class="font-semibold text-xs">
+      <%= comment.user.email %>
+    </span>
+  </div>
+
+  <% if current_user == comment.user %>
+    <div>
+      <%= button_to 'Delete comment', comment_path(comment), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class: "btn-primary bg-red-800"%>
+    </div>
+  <% end %>
+</div>
